@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css"/>
+  <title>Songs of the Winds</title>
+</head>
+<body>
+
+<div class="flipbook">
+
+  <!-- Front Cover -->
+  <div class="hard">
+    <div class="text-container">
+      <h1 class="title">Songs & Prayers Of</h1>
+      <h1 class="title">The Winds</h1>
+      <small class="author">Arija Windsly</small>
+    </div>
+  </div>
+
+  <!-- Inside Cover -->
+  <div class="hard">
+    <img src="slike/insideback.jpg"/>
+  </div>
+
+  <!-- Page 1 -->
+  <div class="page">
+    <div class="page-text">
+      <h2 class="adventures">Songs of my adventures and more.</h2>
+      <small class="Arija">Hope you enjoy them!</small>
+    </div>
+  </div>
+
+  <!-- Page 2 -->
+  <div class="page">
+    <div class="page-text">
+   <h1 class="contents">Table Of Contents:</h1>
+  
+    <h2 class="Spell">Spells</h2>
+    <ol class="Spells">
+        <li>Charms Person</li>
+        <li>Hideous Surprise</li>
+        <li>Revile Me the Magic</li>
+    </ol>
+
+    <h2 class="Ode">Odes</h2>
+    <ol class="Odes">
+        <li>Ode to the Hallow Maw</li>
+    </ol>
+    </div>
+  </div>
+   <!-- Page 3 -->
+  <div class="page">
+   
+  </div>
+<!-- Page 4 -->
+  <div class="page">
+ <h1>Charms Person</h1>
+   <p>The matters of the heart are always clear to me 
+And if u think you are hiding it well 
+I know i know</p>
+<p>
+And then i can change it
+Bend it to my will
+In the span of seconds
+You won't know how u will feel
+</p>
+<p>
+And my eyes will charm you
+You'll be on my side
+In the wiff of winds 
+my voice will guide u
+And your mind 
+Will be mine</p>
+  </div>
+
+  <!-- Page 5 --> 
+  <div class="page">
+  
+  </div>
+   <!-- Page 6 --> 
+ <div class="page">
+  
+  </div>
+   
+   <!-- Page 7 -->
+  <div class="page">
+   <img src="slike/Heartwind Draught.jpg"/>
+   
+  </div>
+
+  <!-- Back Inside Cover -->
+  <div class="hard">
+    <img src="slike/insideback.jpg"/>
+  </div>
+
+  <!-- Back Cover -->
+  <div class="hard">
+     <div class="text-container">
+      <h1 class="title">Songs & Prayers Of</h1>
+      <h1 class="title">The Winds</h1>
+      <small class="author">Arija Windsly</small>
+    </div>
+  </div>
+
+</div>
+
+<script src="jquery.js"></script>
+<script src="turn.js"></script>
+<script>
+$(document).ready(function() {
+    // Initialize the flipbook
+    $(".flipbook").turn({
+        width: 1000,
+        height: 600,
+        autoCenter: true,
+        display: 'double',
+        gradients: true
+    });
+
+    // Optional: click on left/right halves of page to turn
+    $(".flipbook").on('click', function(e) {
+        var half = $(this).width() / 2;
+        if (e.pageX > $(this).offset().left + half) {
+            $(this).turn('next');
+        } else {
+            $(this).turn('previous');
+        }
+    });
+});
+</script>
+</body>
+</html>
