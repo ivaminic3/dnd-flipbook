@@ -112,71 +112,17 @@ body {
   transform: translate(-50%, -50%); /* adjust back to perfect center */
 }
 
-.page img{
- width: 500px;       /* half of flipbook */
-height: 600px;
-position: center;
-
-}
-/* Second page Tble of contents*/
-.page-text {
-   
-    
+.page img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     height: 100%;
-    text-align: center;
-    padding: 40px 20px;
-    box-sizing: border-box;
-    text-align: center;       /* horizontal centering */
-    display: flex;
-    flex-direction: column;   /* stack items vertically */
-    justify-content: flex-start; /* start from top */
-    align-items: center;      /* center horizontally */
-    gap: 15px;                /* space between items */
-    font-size: 35px;
-    
+    object-fit: cover;  /* fills the container without distortion */
 }
-.Spells,.Odes{
-
- font-family: "Tangerine", cursive;
-  font-weight: 400;
-  font-style: normal;
-
-}
-
-
-/*page number 4*/
-
-.charm{
-
-height: 100%;
-    text-align: center;
-    padding: 40px 20px;
-    box-sizing: border-box;
-    text-align: center;       /* horizontal centering */
-    display: flex;
-    flex-direction: column;   /* stack items vertically */
-    justify-content: flex-start; /* start from top */
-    align-items: center;      /* center horizontally */
-    gap: 15px;                /* space between items */
-    font-size: 40px;
-
-}
-.paragraph{
-
-
- font-family: "Tangerine", cursive;
-  font-weight: 400;
-  font-style: normal;
-
-    height: 100%;
-    text-align: center;
-    padding: 40px 45px;
-    box-sizing: border-box;
-    text-align: center;       /* horizontal centering */
-    display: flex;
-    flex-direction: column;   /* stack items vertically */
-    justify-content: flex-start; /* start from top */
-    align-items: center;      /* center horizontally */
-    gap: 15px;                /* space between items */
-    font-size: 30px;
+.page audio{
+  position: absolute;
+  bottom: 60px;       /* distance from bottom */
+  left: 50%;          /* move to center */
+  transform: translateX(-50%);
 }
