@@ -36,12 +36,13 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.9); /* semi-transparent black */
+    background-color: rgba(0,0,0,0.8); /* semi-transparent black */
     z-index: 500;          /* on top of everything else */
     display: none;         /* hidden by default */
     pointer-events: none; /* allows clicks to pass through if needed */
     mix-blend-mode: multiply; /* optional for better effect */
     transition: background 0.1s;
+    
 }
 
 
@@ -157,3 +158,37 @@ body {
   display: block;
 }
 
+.flame {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(180,240,255,1) 0%, rgba(0,150,255,0.6) 40%, transparent 80%);
+    box-shadow: 0 0 50px 20px rgba(0,200,255,1);
+    cursor: pointer;
+    animation: flicker 0.3s infinite alternate;
+    z-index: 10;
+    filter: blur(8px) drop-shadow(0 0 40px rgba(0,200,255,1));
+}
+
+/* Flame flicker animation */
+@keyframes flicker {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    50% { transform: translate(-50%, -55%) scale(1.2); opacity: 0.8; }
+}
+
+/* Flame target styling */
+.flame-target {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80px;
+    height: 80px;
+    transform: translate(-50%, -50%);
+    border: 2px dashed #fff;
+    border-radius: 50%;
+    background-color: rgba(255,255,255,0.1);
+    z-index: 9999;
+    pointer-events: auto; /* Make sure it can be clicked */
+   
+}
