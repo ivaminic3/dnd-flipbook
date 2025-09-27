@@ -7,8 +7,9 @@
   <title>Songs of the Winds</title>
 </head>
 <body>
+<div id="overlay" style="display:none;"></div>
 
-<div class="flipbook">
+<div id="flipbook1" class="flipbook">
 
   <!-- Front Cover -->
   <div class="hard">
@@ -79,6 +80,9 @@
   <!-- Page 10--> 
   <div class="page">
   <img src="slike/dead eyes.jpg"/>
+   <button id="switch-btn" class="img-btn">
+      <img src="slike/buttoneye.jpg" alt="Switch Book">
+    </button>
   </div>
   <div class="page">
   <img src="slike/djuzo.jpg"/>
@@ -119,14 +123,137 @@
   </div>
 
 </div>
+ 
+<div id="flipbook2" class="flipbook" style="display: none;">
+    <!-- Overlay inside flipbook2 -->
+
+    
+
+  <!-- Front Cover -->
+  <div class="hard">
+    <div class="text-container">
+      <h1 class="title">Songs & Prayers Of</h1>
+      <h1 class="title">The Winds</h1>
+      
+      <small class="author">Arija Windsly</small>
+    </div>
+  </div>
+
+  <!-- Inside Cover -->
+  <div class="hard">
+    <img src="slike/insideback.jpg"/>
+  </div>
+
+  <!-- Page 1 -->
+  <div class="page">
+    <div class="page-text">
+      <h2 class="adventures">Songs of my adventures and more.</h2>
+      <small class="Arija">Hope you enjoy them!</small>
+    </div>
+  </div>
+
+  <!-- Page 2 -->
+  <div class="page">
+  <img src="slike/1page.jpg"/>
+  </div>
+   <!-- Page 3 -->
+  <div class="page">
+   <img src="slike/page2.jpg"/>
+  </div>
+<!-- Page 4 -->
+  <div class="page">
+ <img src="slike/page3.jpg"/>
+  </div>
+
+  <!-- Page 5 --> 
+  <div class="page">
+  <img src="slike/page4.jpg"/>
+  
+  <audio controls>
+  <source src="audio/New_Project (1).mp3" type="audio/mpeg">
+  </audio>
+  </div>
+   <!-- Page 6 --> 
+ <div class="page">
+  <img src="slike/page5.jpg"/>
+  </div>
+  <!-- Page 7 --> 
+   <div class="page">
+  <img src="slike/page6.jpg"/>
+  <audio  controls>
+     <source src="audio/surprise.mp3" type="audio/mpeg">
+  </audio>
+  </div>
+  <!-- Page 8 --> 
+  <div class="page">
+  <img src="slike/page7.jpg"/>
+  </div>
+  <!-- Page 9 --> 
+  <div class="page">
+  <img src="slike/page8.jpg"/>
+  <audio controls>
+    <source src="audio/ode.mp3" type="audio/mpeg">
+  </audio>
+  </div>
+  <!-- Page 10--> 
+  <div class="page">
+  
+  <img src="slike/dead eyes2.jpg"/>
+   
+  
+  </div>
+  <div class="page">
+    
+  <img src="slike/djuzo.jpg"/>
+   
+  </div>
+  <div class="page">
+  <img src="slike/arija.jpg"/>
+  </div>
+   <div class="page">
+   <img src="slike/page2-1.jpg"/>
+  </div>
+<div class="page">
+  <img src="slike/Frame 1.jpg"/>
+  
+  </div>
+   <!-- Page 7 -->
+  <div class="page">
+   <img src="slike/Heartwind Draught.jpg"/>
+   
+  </div>
+  <!-- Page 8 -->
+  <div class="page">
+  
+  </div>
+
+  <!-- Back Inside Cover -->
+  <div class="hard">
+    <img src="slike/insideback.jpg"/>
+  </div>
+
+  <!-- Back Cover -->
+  <div class="hard">
+     <div class="text-container">
+      <h1 class="title">Songs & Prayers Of</h1>
+      <h1 class="title">The Winds</h1>
+      <small class="author">Arija Windsly</small>
+    </div>
+  </div>
+
+</div>
+
+
+
+
 
 
 <script src="jquery.js"></script>
 <script src="turn.js"></script>
 <script>
 $(document).ready(function() {
-    // Initialize the flipbook
-    $(".flipbook").turn({
+    // Initialize both flipbooks
+    $("#flipbook1").turn({
         width: 1000,
         height: 600,
         autoCenter: true,
@@ -134,7 +261,15 @@ $(document).ready(function() {
         gradients: true
     });
 
-    // Optional: click on left/right halves of page to turn
+    $("#flipbook2").turn({
+        width: 1000,
+        height: 600,
+        autoCenter: true,
+        display: 'double',
+        gradients: true
+    }).turn("page", 13);
+
+    // Add page click turning
     $(".flipbook").on('click', function(e) {
         var half = $(this).width() / 2;
         if (e.pageX > $(this).offset().left + half) {
@@ -143,6 +278,28 @@ $(document).ready(function() {
             $(this).turn('previous');
         }
     });
+
+    $(document).ready(function() {
+   
+
+   $(document).on("click", "#switch-btn", function(e) {
+    e.stopPropagation(); // Prevent flipbook from turning the page
+    $("#flipbook1").hide();
+    $("#overlay").show();
+    $("#flipbook2").show();
+});
+
+ // Track mouse movement
+    $(document).on("mousemove", function(e) {
+        const x = e.clientX;
+        const y = e.clientY;
+
+        // Create a circular transparent area around cursor
+        $("#overlay").css("background", `
+            radial-gradient(circle 100px at ${x}px ${y}px, rgba(0,0,0,0) 0%, rgba(0,0,0,0.9) 150px)
+        `);
+    });
+});
 });
 </script>
 </body>
