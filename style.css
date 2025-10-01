@@ -42,7 +42,7 @@ body {
     pointer-events: none; /* allows clicks to pass through if needed */
     mix-blend-mode: multiply; /* optional for better effect */
     transition: background 0.1s;
-    
+    inset: 0;
 }
 
 
@@ -178,17 +178,15 @@ body {
 }
 
 /* Flame target styling */
-.flame-target {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 80px;
-    height: 80px;
-    transform: translate(-50%, -50%);
-    border: 2px dashed #fff;
-    border-radius: 50%;
-    background-color: rgba(255,255,255,0.1);
-    z-index: 9999;
-    pointer-events: auto; /* Make sure it can be clicked */
-   
+#flame-target {
+  display: block !important;
+  width: 70px !important;
+  height: 70px !important;
+  border-radius: 50% !important;
+  background: radial-gradient(circle, rgb(11, 5, 87) 0%, rgba(0,150,255,0.6) 40%, transparent 80%) !important;
+  position: relative !important;
+  top: 40% !important;
+  left: 40% !important;
+
+  z-index: 9999 !important;
 }

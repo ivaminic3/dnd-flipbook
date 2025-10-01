@@ -80,9 +80,9 @@
   <!-- Page 10--> 
   <div class="page">
   <img src="slike/dead eyes.jpg"/>
-   <button id="switch-btn" class="img-btn">
+  <button id="switch-btn" class="img-btn">
       <img src="slike/buttoneye.jpg" alt="Switch Book">
-    </button>
+  </button>
   </div>
   <div class="page">
   <img src="slike/djuzo.jpg"/>
@@ -91,7 +91,7 @@
   <img src="slike/arija.jpg"/>
   
   </div>
-   <div class="page">
+  <div class="page">
    <img src="slike/page2-1.jpg"/>
   </div>
      <!-- Page 7 -->
@@ -99,7 +99,7 @@
    <img src="slike/Heartwind Draught.jpg"/>
    
   </div>
-<div class="page">
+  <div class="page">
   <img src="slike/Frame 1.jpg"/>
   
   </div>
@@ -149,6 +149,18 @@
       <small class="Arija">Hope you enjoy them!</small>
     </div>
   </div>
+   
+
+   
+ <div class="page">
+ 
+  </div>
+  
+  <div class="page">
+  <img src="slike/pageart2.jpg"/>
+  <div id="flame-target">+</div>/div>
+  </div>
+
 
   <div class="page">
   
@@ -200,28 +212,11 @@
   </div>
    <div class="page">
     <img src="slike/3.5.jpg"/>
-  
-  </div>
- <div class="page">
-   <img src="slike/stolen.jpg"/>
-  </div>
-     <!-- Target page -->
-  <div class="page">
-  <img src="slike/pageart2.jpg"/>
-  
- <div id="flame-target"></div>
-  </div>
-  <div class="page">
-   <img src="slike/stolen.jpg"/>
-  </div>
-
+   </div>
  
- <div class="page">
-   <img src="slike/stolen.jpg"/>
-  </div>
-   <div class="page">
-   <img src="slike/stolen.jpg"/>
-  </div>
+     <!-- Target page -->
+
+
   
    <!-- Back Inside Cover -->
   <div class="hard">
@@ -253,8 +248,11 @@
 $(document).ready(function() {
     // Init flipbooks
     $("#flipbook1").turn({width:1000, height:600, autoCenter:true, display:'double'});
-    $("#flipbook2").turn({width:1000, height:600, autoCenter:true, display:'double'}).turn("page", 4);
 
+    $("#flipbook2").turn({width:1000, height:600, autoCenter:true, display:'double'}).turn("page", 6);
+
+
+ 
     // Click page to flip
     $(".flipbook").on("click", function(e) {
         var half = $(this).width()/2;
@@ -266,8 +264,9 @@ $(document).ready(function() {
     $(document).on("click", "#switch-btn", function(e){
         e.stopPropagation();
         $("#flipbook1").hide();
+         $("#flipbook2").show();
         $("#overlay").show();
-        $("#flipbook2").show();
+       
     });
 
     // Overlay effect
@@ -277,7 +276,7 @@ $(document).ready(function() {
           `radial-gradient(circle 100px at ${x}px ${y}px, rgba(0,0,0,0) 0%, rgba(0,0,0,0.9) 200px)`
         );
     });
-
+ 
     // Flame collection
    const collectedFlames = [];
 const totalFlames = 3;
@@ -285,6 +284,9 @@ const counter = document.getElementById("flame-counter");
 const target = document.getElementById("flame-target");
 
 $("#flipbook2").on("click", ".flame", function(e){
+
+    
+    
     e.stopPropagation(); // prevent page turn
     const flame = $(this);
     if (!collectedFlames.includes(flame.attr("id"))) {
@@ -294,36 +296,20 @@ $("#flipbook2").on("click", ".flame", function(e){
     }
 });
 
-$("#flipbook2").on("click", "#flame-target", function(e){
+
+    $("#flipbook2").on("click", "#flame-target", function(e){
     e.stopPropagation();
-    if (collectedFlames.length === 0) return;
-
-    const target = $(this);
-    const flipbookOffset = $("#flipbook2").offset();
-
-    collectedFlames.forEach((id,index)=>{
-        const flame = $("#"+id);
-        flame.show();
-        flame.css({
-            position:"absolute",
-            top: target.position().top + index*30,
-            left: target.position().left
-        });
-        // append to flipbook instead of target so flipbook DOM stays intact
-        $("#flipbook2").append(flame);
-    });
-
-   
-
-    // Check if all flames placed
-    if ($("#flipbook2 .flame:visible").length === totalFlames){
-        alert("All flames placed! Returning to reality...");
-        $("#flipbook2").hide();
+    console.log("🔥 Target clicked!");
+    console.log("Collected flames:", collectedFlames.length, " / ", totalFlames);
+    if (collectedFlames.length === totalFlames){
+        alert("All flames collected! Returning to reality...");
         $("#overlay").hide();
+        $("#flipbook2").hide();
         $("#flipbook1").show();
     }
- 
 });
+ 
+
 
    
 });
